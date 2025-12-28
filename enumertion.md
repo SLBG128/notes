@@ -1,4 +1,5 @@
 # enumeration pre pen-testing
+What to do in the begining of a pen-test
 
 ## Port Scanning
 ### nmap general
@@ -33,6 +34,12 @@ gobuster dir -u <target-url> -w <path to wordlist>
 ``` bash
 dirsearch -u <target-url>
 ```
+
+### Alternative (?
+``` bash
+fuff -u <target-url> -w <path to wordlist>
+```
+**But! "FUZZ" need to be included in the url to let it know where to fuzz**
 
 ## Advance auto-scan
 ### nikto

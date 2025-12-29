@@ -30,16 +30,16 @@ gobuster dir -u <target-url> -w <path to wordlist>
 - -w: wordlist
 - -x: extension
 
-### IF: scan for parameter for .php like ?=
-``` bash
-dirsearch -u <target-url>
-```
-
-### Alternative (?
+### Faster Alternative: fuff 
 ``` bash
 fuff -u <target-url> -w <path to wordlist>
 ```
-**But! "FUZZ" need to be included in the url to let it know where to fuzz**
+> Note: "FUZZ" is used to specify where to brute force
+
+### Alternative B: scan for parameter for .php like ?=
+``` bash
+dirsearch -u <target-url>
+```
 
 ## Advance auto-scan
 ### nikto

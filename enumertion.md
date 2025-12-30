@@ -7,6 +7,11 @@ What to do in the begining of a pen-test
 nmap -sC -sV <target-url> -oN <output file>
 ```
 
+### another example
+```bash
+nmap -A -v <target-url> -oN <output file>
+```
+
 ### in case there are hidden ports like greater than 1000
 ``` bash
 nmap -sC -sV <target-url> -oN <output file>
@@ -14,7 +19,8 @@ nmap -sC -sV <target-url> -oN <output file>
 #### Syntax
 - sC: Use default scripts when scanning
 - sV: Discover what service is the port serving
-- -P-: Scan for all ports 1-65535
+- -A: Do whatever nmap can do
+- -P-: Scan for all ports 1-65535, or use "," to specify port
 - -v: verbose mode
 - -vv: verboser verbose mode
 

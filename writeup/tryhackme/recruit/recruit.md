@@ -1,12 +1,14 @@
 # Recruit THM
-## Author: W.
+**Difficulty**: Medium  
+**Author**: W.  
+**Date**: 1 Jul 2026  
 
 ```bash
 export IP=10.48.151.14
 ```
 
-# Machine Enuermation
-We start by running a nmap scan to enumerate open TCP port on the machine, with `-sC` for default script scanning and `-sV` for service version detection.  
+# Recon 
+We start by running a nmap scan to enumerate open TCP ports on the machine, with `-sC` for default script scanning and `-sV` for service version detection.  
 ```bash
 nmap -sC -sV -v -oN nmap.log 10.48.151.14
 ```
@@ -20,7 +22,7 @@ ffuf -w /opt/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.48.1
 ```
 ![dir scanning result](./img/img2.png)
 
-From the result, `/mail` stands out from them, after visiting, we discovered `mail.log` are available, which reveals the hr login username `hr` and its credential being stored in `config.php`. We also knows that the admin credential are stored inside a backend database. 
+From the result, `/mail` stands out from them, after visiting, we discovered `mail.log` is available, which reveals the hr login username `hr` and its credential being stored in `config.php`. We also know that the admin credential are stored inside a backend database. 
 
 ![http://$IP/mail/mail.log](./img/img3.png)
 
@@ -29,7 +31,7 @@ After that, we navigate to the site with our browser, and we can see the login p
 
 ![api endpoint](./img/img4.png)
 
-From above, we already know there exist a `config.php` that have hr's credential and the server is an apache webserver, therefore, we try to inject the api endpoint with `file:///var/www/html/config.php` as the param while hoping the php code are not being executed. Luckily, the whole php file are readable and we discovered hr's password `hrpasssword123`
+From above, we already know there exist a `config.php` that have hr's credential.Knowing that the server is an apache webserver from the nmap scan, i.e. the root of web server is located ar `/var/www/html`, we try to inject the api endpoint with `file:///var/www/html/config.php` as the param while hoping the php code are not being executed. Luckily, the whole php file are readable and we discovered hr's password `hrpassword123`
 
 ![config.php](./img/img5.png)
 
@@ -69,7 +71,7 @@ This reveals two tables: `candidates` and `users`. Using common sense, we know t
 ```sql
 0' UNION SELECT group_concat(column_name), 2, 3, 4 FROM information_schema.columns WHERE table_name = 'users' #
 ```
-While a lot of columns pop out, the 2 most important are `username` and `password`. 
+While a lot of columns pop out, the two most important are `username` and `password`. 
 
 5. Extracting data
 ```sql
@@ -82,5 +84,8 @@ This extracts the credential of `admin` user.
 After logging in with the admin credential, we get the adminb flag and completed the whole room.
 
 ![Admin flag](./img/img9.png)
+
+# Conclusion
+Overall, this is a relatively easy room that requires basic union-based sql injection and local file inclusion knowledge.
 
 Thanks for seeing this whole thing where the author probably won't look at again. :)

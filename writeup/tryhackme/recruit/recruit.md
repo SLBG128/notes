@@ -10,7 +10,7 @@ export IP=10.48.151.14
 # Recon 
 We start by running a nmap scan to enumerate open TCP ports on the machine, with `-sC` for default script scanning and `-sV` for service version detection.  
 ```bash
-nmap -sC -sV -v -oN nmap.log 10.48.151.14
+nmap -sC -sV -v -oN nmap.log $IP
 ```
 ![nmap scan result](./img/img1.png)
 
@@ -18,7 +18,7 @@ We discovered that port `22`(SSH), `53`(DNS), and `80`(HTTP) are open.
 
 Given that port `80` is open, we performed a directory scan to check for available directories and files using `ffuf`.
 ```bash
-ffuf -w /opt/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.48.151.14/FUZZ
+ffuf -w /opt/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://$IP/FUZZ
 ```
 ![dir scanning result](./img/img2.png)
 

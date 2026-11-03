@@ -3,7 +3,7 @@
 **Author:** h1m_1208
 
 This repository is the source for my study notes and writeups.
-The notes are also published on my [personal website](https://h1m1208.github.io/notes/).
+They are also published on my [personal website](https://h1m1208.github.io/study-notes/).
 
 ## Organization
 

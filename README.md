@@ -24,6 +24,10 @@ the source repository and is not published as a note.
 - Use relative paths for images stored alongside a note. For example, from
   `writeup/tryhackme/recruit/recruit.md`, link to an image as
   `![Description](./img/img1.png)`.
+- Put commands containing shell pipes in fenced code blocks. In prose, format
+  literal pipe characters as inline code, such as `` `|` ``, to keep Markdown
+  parsing unambiguous. For tables, use consistent pipe separators and include
+  a header separator row.
 - Preserve the folder structure when moving a note or its assets so relative
   links continue to work.
 - Notes without Jekyll front matter are supported; the website build adds the
